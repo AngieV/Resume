@@ -6,6 +6,8 @@
 
  //JSON - validate at https://jsonlint.com/
 
+// ----------------------HEADER---------------------------
+
 // add bio object
 var bio = {
     "name": "Angela Volluz",
@@ -36,11 +38,38 @@ var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 $("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail);
+$("#topContacts").append(formattedEmail); 
 $("#topContacts").append(formatedGithub);
 $("#topcontacts").append(formattedLinkedIn);
 $("#topContacts").append(formattedLocation);
+//------------TODO : fix to accomodate linkedIn----------------------
 
+//add skills if there are any 
+/*  for-in loops are considered to be general bad practice when writing JavaScript because 
+    it has some inconsistent behavior with arrays and objects.
+
+if (bio.skills.length > 0) {
+    $("#header").append(HTMLskillsStart);
+    
+    for (skill in bio.skills) {
+        var formattedSkill = (HTMLskills.replace("%data%", bio.skills[skill]));
+        $("#skills").append(formattedSkill);
+    }
+} */
+
+//add skills if there are any--for loop
+
+if (bio.skills.length > 0) {
+    $("#header").append(HTMLskillsStart);
+
+    for(var i=0; i<bio.skills.length; i++){
+        var formattedSkill = (HTMLskills.replace("%data%", bio.skills[i]));
+        $("#skills").append(formattedSkill);
+    }
+}
+
+
+// ----------------------WORK EXPERIENCE---------------------------
 var work = {
     "employers": [
         {
@@ -82,6 +111,7 @@ function displayWork() {
 }
 displayWork();
 
+// ----------------------EDUCATION---------------------------
 var education = {
     "schools": [  
         {
