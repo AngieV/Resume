@@ -9,14 +9,16 @@
 // ----------------------HEADER---------------------------
 
 // add bio object
+
 var bio = {
     "name": "Angela Volluz",
-    "role": "Web Development and Design",
+    "role": "Web Development & Design",
     "contacts": {
        "cellphone": "(618) 979-2097",
        "email": "angiev@me.com",
        "github": "angieV",
        "linkedIn": "angelavolluz",
+       "twitter": "Only used to stalk Lord Stanley's Cup",
        "location": "Swansea, IL"
     },
     "welcomeMsg": "welcome",
@@ -30,7 +32,7 @@ var formattedRole =  HTMLheaderRole.replace("%data%", bio.role);
 var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.cellphone);
 var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
 var formatedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-var formattedLinkedIn = HTMLlinkedin.replace("%data%", bio.contacts.linkedIn);
+var formattedlinkedIn = HTMLlinkedIn.replace("%data%", bio.contacts.linkedIn);
 var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
 // Prepend the new variables in reverse order from which they will appear
@@ -38,11 +40,8 @@ var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 $("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail); 
-$("#topContacts").append(formatedGithub);
-$("#topcontacts").append(formattedLinkedIn);
+$("#topContacts").append(formattedEmail);
 $("#topContacts").append(formattedLocation);
-//------------TODO : fix to accomodate linkedIn----------------------
 
 //add skills if there are any 
 /*  for-in loops are considered to be general bad practice when writing JavaScript because 
@@ -68,6 +67,9 @@ if (bio.skills.length > 0) {
     }
 }
 
+$("#footerContacts").append(formattedEmail);
+$("#footerContacts").append(formatedGithub);
+$("#footerContacts").append(formattedlinkedIn);
 
 // ----------------------WORK EXPERIENCE---------------------------
 var work = {
@@ -84,11 +86,18 @@ var work = {
             "title":"Pre-Production Artist",
             "location": "Des Peres, MO", 
             "description": "Set up custom monograms for embroidered gifts, created size and style templates for each product to maintain consistancy, created new alphabets for in-store use",
-            "workdates":"2009-2013"
+            "workdates":"June 2009- December 2013"
+        },
+        {
+            "name": "Imagineedles, Inc.",
+            "title": "Owner & Operator",
+            "location": "Belleville, IL",
+            "description": "",
+            "workdates":"June 1995- December 2010"
         }
     ]
 };
-
+ 
 function displayWork() {
 
     for (employer in work.employers) {
@@ -111,13 +120,31 @@ function displayWork() {
 }
 displayWork();
 
+// ----------------------PROJECTS---------------------------
+var projects = {
+    "project": [
+        {
+            "name": "",
+            "description": ""
+        },
+        {
+            "name": "",
+            "description": ""
+        },
+        {
+            "name": "",
+            "description": ""
+        },
+    ]
+}
+
 // ----------------------EDUCATION---------------------------
 var education = {
-    "schools": [  
+    "schools": [  // array
         {
             "name": "LaunchCode",
             "city": "St. Louis, MO",
-            "degree":"LaunchCode 101 Cohort, Spring 2018",
+            "degree":"LaunchCode 101 Cohort",
             "major": "Front-End (focus on Python and Javascript)",
             "years": "2017-2018"
         },
