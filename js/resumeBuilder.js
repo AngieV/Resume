@@ -71,6 +71,16 @@ $("#footerContacts").append(formattedEmail);
 $("#footerContacts").append(formatedGithub);
 $("#footerContacts").append(formattedlinkedIn);
 
+//Internationalize the name 
+function inName(n) {
+    var n = n.trim().split(" ");
+    n= n[0].slice(0,1).toUpperCase() + n[0].slice(1).toLowerCase() + " " + n[1].toUpperCase();
+    console.log(n);
+    return n;
+}
+//append the Internationalize Name button
+$("#main").append(internationalizeButton);
+
 // ----------------------WORK EXPERIENCE---------------------------
 var work = {
     "employers": [
