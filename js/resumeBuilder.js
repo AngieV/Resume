@@ -26,61 +26,6 @@ var bio = {
     "skills": ["awesomeness", "meeting deadlines", "aspiring bug exterminator"],
 }
 
-//replace the %data% with bio object variables to format Header
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole =  HTMLheaderRole.replace("%data%", bio.role);
-var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.cellphone);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formatedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
-var formattedlinkedIn = HTMLlinkedIn.replace("%data%", bio.contacts.linkedIn);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-
-// Prepend the new variables in reverse order from which they will appear
-// Append in order of appearance
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#topContacts").append(formattedMobile);
-$("#topContacts").append(formattedEmail);
-$("#topContacts").append(formattedLocation);
-
-//add skills if there are any 
-/*  for-in loops are considered to be general bad practice when writing JavaScript because 
-    it has some inconsistent behavior with arrays and objects.
-
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-    
-    for (skill in bio.skills) {
-        var formattedSkill = (HTMLskills.replace("%data%", bio.skills[skill]));
-        $("#skills").append(formattedSkill);
-    }
-} */
-
-//add skills if there are any--for loop
-
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-
-    for(var i=0; i<bio.skills.length; i++){
-        var formattedSkill = (HTMLskills.replace("%data%", bio.skills[i]));
-        $("#skills").append(formattedSkill);
-    }
-}
-
-$("#footerContacts").append(formattedEmail);
-$("#footerContacts").append(formatedGithub);
-$("#footerContacts").append(formattedlinkedIn);
-
-//Internationalize the name 
-function inName(n) {
-    var n = n.trim().split(" ");
-    n= n[0].slice(0,1).toUpperCase() + n[0].slice(1).toLowerCase() + " " + n[1].toUpperCase();
-    console.log(n);
-    return n;
-}
-//append the Internationalize Name button
-$("#main").append(internationalizeButton);
-
 // ----------------------WORK EXPERIENCE---------------------------
 var work = {
     "employers": [
@@ -107,43 +52,29 @@ var work = {
         }
     ]
 };
- 
-function displayWork() {
-
-    for (employer in work.employers) {
-        
-        $("#workExperience").append(HTMLworkStart);
-        
-        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.employers[employer].name);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.employers[employer].title);
-        var formattedEmpTitle = formattedEmployer + formattedTitle;
-        //append the previous entry to the "last" .work-entry class on the page
-        $(".work-entry:last").append(formattedEmpTitle);
-        //append remaining properties
-        var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.employers[employer].location)
-        $(".work-entry:last").append(formattedWorkLocation);
-        var formattedWorkDates = HTMLworkDates.replace("%data%", work.employers[employer].workdates);
-        $(".work-entry:last").append(formattedWorkDates);
-        var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.employers[employer].description);
-        $(".work-entry:last").append(formattedWorkDescription);
-    }
-}
-displayWork();
 
 // ----------------------PROJECTS---------------------------
+
 var projects = {
+    
     "project": [
         {
-            "name": "",
-            "description": ""
+            "title": "Portfolio",
+            "dates": "November 2020",
+            "description": "Presents multiple projects as a portfolio",
+            "images": "list"
         },
         {
-            "name": "",
-            "description": ""
+            "title": "Exotic Wagering Calculator",
+            "dates": "2019",
+            "description": "whatItdoes",
+            "images": "list"
         },
         {
-            "name": "",
-            "description": ""
+            "title": "Restaurant Reviews",
+            "dates": "2018",
+            "description": "whatItdoes",
+            "image": "list"
         },
     ]
 }
@@ -173,7 +104,7 @@ var education = {
             "attended": "1983-1985 "
         }
     ],
-    "online courses": [
+    "online_courses": [
         {
             "name": "Udacity",
             "course": "Javascript Basics",
@@ -191,3 +122,97 @@ var education = {
         }
     ]
 }
+
+//replace the %data% with bio object variables to format Header
+
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedRole =  HTMLheaderRole.replace("%data%", bio.role);
+var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.cellphone);
+var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+var formattedlinkedIn = HTMLlinkedIn.replace("%data%", bio.contacts.linkedIn);
+var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
+// Prepend the new variables in reverse order from which they will appear
+// Append in order of appearance
+
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+$("#topContacts").append(formattedMobile);
+$("#topContacts").append(formattedEmail);
+$("#topContacts").append(formattedLocation);
+$("#footerContacts").append(formattedEmail);
+$("#footerContacts").append(formattedGithub);
+$("#footerContacts").append(formattedlinkedIn);
+
+/*  
+   add skills if there are any--for loop
+   for-in loops are considered to be general bad practice in JavaScript 
+   and has shown inconsistent behavior with arrays and objects.
+*/
+
+if (bio.skills.length > 0) {
+
+    $("#header").append(HTMLskillsStart);
+
+    for(var i=0; i<bio.skills.length; i++){
+        var formattedSkill = (HTMLskills.replace("%data%", bio.skills[i]));
+        $("#skills").append(formattedSkill);
+    }
+}
+
+//Internationalize the name 
+function inName(n) {
+    var n = n.trim().split(" ");
+    n= n[0].slice(0,1).toUpperCase() + n[0].slice(1).toLowerCase() + " " + n[1].toUpperCase();
+    console.log(n);
+    return n;
+}
+//append the Internationalize Name button
+$("#main").append(internationalizeButton);
+
+/* work.display = function() {
+
+}
+work.display(); */
+    
+function displayWork() {
+
+    for (employer in work.employers) {
+        
+        $("#workExperience").append(HTMLworkStart);
+        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.employers[employer].name);
+        var formattedTitle = HTMLworkTitle.replace("%data%", work.employers[employer].title);
+        var formattedEmpTitle = formattedEmployer + formattedTitle;
+        //append the previous entry to the "last" .work-entry class on the page
+        // The last selector selects the last element https://www.w3schools.com/jquery/sel_last.asp
+        $(".work-entry:last").append(formattedEmpTitle);
+        var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.employers[employer].location)
+        $(".work-entry:last").append(formattedWorkLocation);
+        var formattedWorkDates = HTMLworkDates.replace("%data%", work.employers[employer].workdates);
+        $(".work-entry:last").append(formattedWorkDates);
+        var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.employers[employer].description);
+        $(".work-entry:last").append(formattedWorkDescription);
+    }
+}
+displayWork();
+
+
+projects.display = function() {
+
+    projects.project.forEach( function(project) {
+
+        var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
+        var formattedProjectDates = HTMLprojectDates.replace("%data%", project.dates);
+        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", project.description);
+        
+        $("#projects").append(HTMLprojectStart);
+        $(".project-entry:last").append(formattedTitle);
+        $(".project-entry:last").append(formattedProjectDates);
+        $(".project-entry:last").append(formattedProjectDescription);
+    });
+}
+projects.display();
+
+//append a map
+//$("#mapDiv").append(googleMap);
