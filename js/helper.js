@@ -55,16 +55,19 @@ var HTMLonlineTitle = '<a href="#">%data%';
 var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a href="#">%data%</a>';
+var HTMLonlineTakeaways = '<p><br>%data%</p>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
 
 /*
-The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
+The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create 
+a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
   $('button').click(function() {
+    //passing $('#name') replaces the name in the header
     var $name = $('#name');
     var iName = inName($name.text()) || function(){};
     $name.html(iName);
@@ -85,7 +88,9 @@ function logClicks(x,y) {
   );
   console.log('x location: ' + x + '; y location: ' + y);
 }
-
+//$(document).click() is a jQuery event handler 
+//loc is a jQuery event object that contains information about the click event.
+// For more info: https://api.jquery.com/category/events/event-object/
 $(document).click(function(loc) {
   var x = loc.pageX;
   var y = loc.pageY;
@@ -144,8 +149,8 @@ function initializeMap() {
     // the locations array. Note that forEach is used for array iteration
     // as described in the Udacity FEND Style Guide:
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-    work.jobs.forEach(function(job){
-      locations.push(job.location);
+    work.employers.forEach(function(job){
+      locations.push(employers.location);
     });
 
     return locations;
@@ -202,9 +207,10 @@ function initializeMap() {
     }
   }
 
-  /*
+
+  /* 
   pinPoster(locations) takes in the array of locations created by locationFinder()
-  and fires off Google place searches for each location
+  and fires off Google place searches for each location 
   */
   function pinPoster(locations) {
 
@@ -242,11 +248,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+  map.fitBounds(mapBounds);
+});
