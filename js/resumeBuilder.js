@@ -100,21 +100,24 @@ var education = {
             "city": "St. Louis, MO",
             "degree":"LC-101",
             "major": "Front-End (Python, Javascript)",
-            "attended": "2017-2018"
+            "attended": "2017-2018",
+            "gpa": ""
         },
         {
             "name": "SWIC",
             "city": "Belleville, IL",
             "degree":"AAS",
             "major": "Web Design & Development",
-            "attended": "2013-2015"
+            "attended": "2013-2015",
+            "gpa": "4.0"
         },
         {
             "name": "Art Institute of Atlanta",
             "city": "Atlanta, GA",
             "degree":"AA",
             "major": "Visual Communication",
-            "attended": "1983-1985 "
+            "attended": "1983-1985 ",
+            "gpa": "3.8"
         }
     ],
     "online_courses": [
@@ -233,8 +236,6 @@ projects.display = function() {
 education.display = function() {
 
     education.schools.forEach( function(school) {
-    //for(var i=0; i<schools.length; i++){
-        //replace the %data% and format each property
         var formattedSchool = HTMLschoolName.replace("%data%", school.name);
         var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.city);
         var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
@@ -247,6 +248,13 @@ education.display = function() {
         //$(".education-entry").append(formattedSchoolDegree);
         $(".education-entry:last").append(formattedSchoolDates);
         $(".education-entry:last").append(formattedSchoolLocation);
+
+        if (school.gpa != "") {
+            var formattedGPA = HTMLschoolGPA.replace("%data%", school.gpa);
+            var formattedMajorandGPA = formattedSchoolMajor + formattedGPA;
+            $(".education-entry:last").append(formattedMajorandGPA);
+        } 
+        else 
         $(".education-entry:last").append(formattedSchoolMajor);
 
     });
@@ -260,7 +268,6 @@ education.display = function() {
         var formattedOnlineTakeaways = HTMLonlineTakeaways.replace("%data%", course.takeaways);
 
         $("#education").append(HTMLschoolStart);
-        //$(".education-entry:last").append(formattedOnlineClass);
         $(".education-entry:last").append(formattedOnlineCourse);
         $(".education-entry:last").append(formattedOnlineDates);
         $(".education-entry:last").append(formattedOnlineTakeaways);
@@ -273,4 +280,4 @@ projects.display();
 education.display();
 
 //append a map
-//$("#mapDiv").append(googleMap);
+$("#mapDiv").append(googleMap);

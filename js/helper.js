@@ -49,6 +49,7 @@ var HTMLschoolDegree = ' -- %data%</a>';
 var HTMLschoolDates = '<div class="date-text">%data%</div>';
 var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
+var HTMLschoolGPA = '<em> --GPA: %data%</em>';
 
 var HTMLonlineClasses = '<h3>Online Classes</h3>';
 var HTMLonlineTitle = '<a href="#">%data%';
@@ -88,7 +89,7 @@ function logClicks(x,y) {
   );
   console.log('x location: ' + x + '; y location: ' + y);
 }
-//$(document).click() is a jQuery event handler 
+//$(document).click() is a jQuery event handler; 
 //loc is a jQuery event object that contains information about the click event.
 // For more info: https://api.jquery.com/category/events/event-object/
 $(document).click(function(loc) {
@@ -119,8 +120,7 @@ function initializeMap() {
   };
 
   /*
-  For the map to be displayed, the googleMap var must be
-  appended to #mapDiv in resumeBuilder.js.
+  For the map to be displayed, the googleMap var must be appended to #mapDiv in resumeBuilder.js.
   */
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
